@@ -1,0 +1,17 @@
+Blackjack
+
+Spec, write out the requirements
+-Player and the Dealer (computer)
+-Deck, ability to shuffle
+-Deal a hand, take a card from the deck deal it to the dealer, then the player etc.
+-Card can be face down or up
+-Ace can have value of 1 or 11
+-Stand, Hit (meaning take a card)
+-Dealer has no option but to hit if less than 17
+-21/Blackjack, player cannot hit anymore and their turn ends
+
+Classes - Card, Deck, Hand
+
+*Card - Suit ( Heart, Clubs, Diamond, Spades)
+      - Rank ( 1 - 11 )
+      - Show
