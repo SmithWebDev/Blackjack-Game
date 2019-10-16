@@ -15,3 +15,17 @@ Classes - Card, Deck, Hand
 *Card - Suit ( Heart, Clubs, Diamond, Spades)
       - Rank ( 1 - 11 )
       - Show
+
+  SUITS = ['Spades', 'Hearts', 'Clubs', 'Diamonds']
+  RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+Card = Suit, Rank, Display of card, and show/hide
+
+*Deck - 52 cards
+      - shuffle
+      - suits, ranks
+      - deck
+      - deal_card
+      - replace_with
+  Deck of cards
+    - Suits, ranks
+    - Loop over the Suites - for each suit, fill in rank of the card
