@@ -43,16 +43,33 @@ RSpec.describe Hand do
 
       expect(@hand.get_value).to eq(19)
     end
-    it 'returns correct value with an Ace and a Jack' do
-      
+    it 'returns correct value with an Ace and a Queen' do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Spades','Ace')
+  
+      @hand.add_card card1
+      @hand.add_card card2
+  
+      expect(@hand.get_value).to eq 21
     end
   end
-
+  
   describe "Hand Output" do
     it "returns the correct output if 'show' is true for all cards" do
-      
+      @hand.add_card Card.new('Diamonds','Queen')
+      @hand.add_card Card.new('Spades','Ace') 
+
+      expect("#{@hand}").to eq("Queen of Diamonds, Ace of Spades, Total Value: 21")
     end
     it "returns the correct output if 'show' if false for one card" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Spades','Ace')
+      card1.show = false
+    
+      @hand.add_card card1
+      @hand.add_card card2
+    
+      expect("#{@hand}").to eq("Ace of Spades, Total Value: 11")
       
     end
   end
