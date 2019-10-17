@@ -12,20 +12,37 @@ Spec, write out the requirements
 
 Classes - Card, Deck, Hand
 
-*Card - Suit ( Heart, Clubs, Diamond, Spades)
-      - Rank ( 1 - 11 )
-      - Show
+*Card 
+    - Suit ( Heart, Clubs, Diamond, Spades)
+    - Rank ( 1 - 11 )
+    - Show
 
   SUITS = ['Spades', 'Hearts', 'Clubs', 'Diamonds']
   RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-Card = Suit, Rank, Display of card, and show/hide
+  Card = Suit, Rank, Display of card, and show/hide
 
-*Deck - 52 cards
-      - shuffle
-      - suits, ranks
-      - deck
-      - deal_card
-      - replace_with
+*Deck 
+    - 52 cards
+    - shuffle
+    - suits, ranks
+    - deck
+    - deal_card
+    - replace_with
   Deck of cards
     - Suits, ranks
     - Loop over the Suites - for each suit, fill in rank of the card
+
+*Hand
+    - Card dealt to dealer or player
+    - gives us the cards dealt
+    - dealt card array 
+      - method to add cards to this array
+    - total value of player's or dealer's dealt cards
+    - showing the details of each card dealt and the total value
+    - Ace can have value of 1 or 11
+  * Create two cards, add them to the hand, verify a few things
+  *Hand Values
+    - Calculates value of hand
+    - All face cards have value of 10 (Jack, Queen, King)
+    - All number cards have value or rank
+    - Ace equals 1 or 11
