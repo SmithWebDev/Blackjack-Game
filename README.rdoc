@@ -1,14 +1,14 @@
 Blackjack
 
 Spec, write out the requirements
--Player and the Dealer (computer)
--Deck, ability to shuffle
--Deal a hand, take a card from the deck deal it to the dealer, then the player etc.
--Card can be face down or up
--Ace can have value of 1 or 11
--Stand, Hit (meaning take a card)
--Dealer has no option but to hit if less than 17
--21/Blackjack, player cannot hit anymore and their turn ends
+  -Player and the Dealer (computer)
+  -Deck, ability to shuffle
+  -Deal a hand, take a card from the deck deal it to the dealer, then the player etc.
+  -Card can be face down or up
+  -Ace can have value of 1 or 11
+  -Stand, Hit (meaning take a card)
+  -Dealer has no option but to hit if less than 17
+  -21/Blackjack, player cannot hit anymore and their turn ends
 
 Classes - Card, Deck, Hand
 
@@ -41,8 +41,21 @@ Classes - Card, Deck, Hand
     - showing the details of each card dealt and the total value
     - Ace can have value of 1 or 11
   * Create two cards, add them to the hand, verify a few things
-  *Hand Values
+  * Hand Values
     - Calculates value of hand
     - All face cards have value of 10 (Jack, Queen, King)
     - All number cards have value or rank
     - Ace equals 1 or 11
+
+* Blackjack
+  Blackjack.rb
+    - player_hand
+    - dealer_hand
+    - playing - whether the game is on or not
+    - current_gamer
+    - deck - handle the cards
+    - deal - to deal the cards to the player or the dealer
+    - hit - player has option to take a card "Hitting"
+    - stand - player has the option to close out their hand "Stand"
+    - show_hands - to report the hands of the player and the dealer
+    - set_results - to set the results of the game
