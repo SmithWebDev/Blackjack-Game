@@ -138,4 +138,49 @@ RSpec.describe Blackjack do
       expect(@blackjack.result).to eq("Dealer busted!")
     end
   end
+
+  describe "standing" do
+    before do  
+      @blackjack = Blackjack.new(SUITS, RANKS)
+    end
+    
+    it "gamer switches to 'Dealer' when 'Player' stands" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','Ace')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','3')
+      card6 = Card.new('Hearts','Queen')
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit
+      @blackjack.stand
+
+      expect(@blackjack.current_gamer).to eq("Dealer")
+    end
+
+    it "'Dealer' automatically hits if the hand value < 17 and first card face up" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','Ace')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','3')
+      card6 = Card.new('Hearts','Queen')
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+
+      expect(@blackjack.dealer_hand.get_value).to eq(13)
+      @blackjack.hit #Player hits
+      @blackjack.stand #Player stands
+
+      expect(@blackjack.dealer_hand.get_value).to eq(23)
+      expect(@blackjack.dealer_hand.dealt_cards.first.show).to eq true
+    end
+  end
 end
