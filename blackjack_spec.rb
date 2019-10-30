@@ -76,4 +76,66 @@ RSpec.describe Blackjack do
       expect(@blackjack.current_gamer).to eq("Dealer")
     end
   end
+
+  describe "hitting a hand" do
+    before do  
+      @blackjack.deal
+      @dealer_cards = @blackjack.dealer_hand.dealt_cards
+      @player_cards = @blackjack.player_hand.dealt_cards
+    end
+    
+    it "can hit if playing is set to true" do
+      expect(@blackjack.playing).to eq true
+    end
+
+    it "returns 2 cards for dealer but after hit, player will have 3 cards" do
+      @blackjack.hit
+
+      expect(@dealer_cards.count).to eq 2
+      expect(@player_cards.count).to eq 3
+    end
+
+    it "correctly determines if player is busted" do
+      #player cards
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','3')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','King')
+      card6 = Card.new('Hearts','Queen')
+
+      @blackjack = Blackjack.new(SUITS, RANKS)
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit
+
+      expect(@blackjack.result).to eq("Player busted!")
+    end
+
+    it "correctly determines if dealer is busted" do
+      #player cards
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','Ace')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','King')
+      card6 = Card.new('Hearts','Queen')
+
+      @blackjack = Blackjack.new(SUITS, RANKS)
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit
+
+      @blackjack.current_gamer = "Dealer"
+      @blackjack.hit
+
+      expect(@blackjack.result).to eq("Dealer busted!")
+    end
+  end
 end
