@@ -60,7 +60,7 @@ class Blackjack
   end
 
   def show_hands
-  
+    
   end
 
   def set_results
