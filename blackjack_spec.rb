@@ -183,4 +183,119 @@ RSpec.describe Blackjack do
       expect(@blackjack.dealer_hand.dealt_cards.first.show).to eq true
     end
   end
+
+  describe "Showing hands" do
+    before do  
+      @blackjack = Blackjack.new(SUITS, RANKS) 
+      @blackjack.deal
+    end
+    
+    it "displays the gamers hand" do
+      expect(@blackjack.show_hands).to match(/Player's hand/)
+      expect(@blackjack.show_hands).to match(/Total Value:/)
+      expect(@blackjack.show_hands).to match(/Dealer's hand/)
+      expect(@blackjack.show_hands).to match(/Total Value:/)
+    end
+  end
+
+  describe "setting results" do
+    it "sets the correct result when player busts" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','2')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','10')
+      card6 = Card.new('Hearts','Queen')
+
+      @blackjack = Blackjack.new(SUITS, RANKS)
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit #player hits to bust
+
+      expect(@blackjack.set_results).to eq("Player Busted!")
+    end
+    it "sets the correct result when dealer busts" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','Ace')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','6')
+      card6 = Card.new('Hearts','Queen')
+
+      @blackjack = Blackjack.new(SUITS, RANKS)
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit #player hits and gets 21
+      @blackjack.stand #player stand; dealer's turn
+      @blackjack.hit
+
+      expect(@blackjack.set_results).to eq("Dealer Busted!")
+    end
+    it "set the correct result when there is a tie" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','Ace')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','10')
+      card6 = Card.new('Hearts','Ace')
+
+      @blackjack = Blackjack.new(SUITS, RANKS)
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit #player hits and gets 21
+      @blackjack.stand #player stand; dealer's turn
+      @blackjack.hit
+
+      expect(@blackjack.set_results).to eq("It's a tie!")
+    end
+    it "sets the correct result when player wins" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','10')
+      card3 = Card.new('Clubs','Ace')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','9')
+      card6 = Card.new('Hearts','Ace')
+
+      @blackjack = Blackjack.new(SUITS, RANKS)
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit #player hits and gets 21
+      @blackjack.stand #player stand; dealer's turn
+      @blackjack.hit
+
+      expect(@blackjack.set_results).to eq("Player wins!")
+    end
+    it "sets the correct result when dealer wins" do
+      card1 = Card.new('Diamonds','Queen')
+      card2 = Card.new('Hearts','7')
+      card3 = Card.new('Clubs','Ace')
+
+      card4 = Card.new('Spades','10')
+      card5 = Card.new('Clubs','10')
+      card6 = Card.new('Hearts','Ace')
+
+      @blackjack = Blackjack.new(SUITS, RANKS)
+
+      new_deck = [card6, card3, card2, card5, card1, card4]
+      @blackjack.deck.replace_with new_deck
+      @blackjack.deal
+      @blackjack.hit #player hits and gets 21
+      @blackjack.stand #player stand; dealer's turn
+      @blackjack.hit
+
+      expect(@blackjack.set_results).to eq("Dealer wins!")
+    end
+  end
 end
